@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+:root {
+  --app-color-1: #f1e9df;
+  --app-color-1-rgb: 241, 233, 223;
+  --app-color-1-contrast: #000000;
+
+  --app-color-2: #e7caab;
+  --app-color-2-rgb: 231, 202, 171;
+  --app-color-2-contrast: #ffffff;
+
+  --app-color-3: #97694b;
+  --app-color-3-rgb: 151, 105, 75;
+  --app-color-3-contrast: #000000;
+
+
+  --app-color-sucess: #2b990a;
+  --app-color-sucess-contrast: #000000;
+  --app-color-warning: #928d02;
+  --app-color-warning-contrast: #000000;
+  --app-color-danger: #a82200;
+  --app-color-danger-shade: #7e1900;
+  --app-color-danger-contrast: #ffffff;
+}

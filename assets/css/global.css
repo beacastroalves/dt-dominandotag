@@ -1,0 +1,89 @@
+@charset "UTF-8";
+
+@import url(variable.css);
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: var(--app-color-2);
+  height: 100vh;
+  width: 100vw;
+  font-family: "Raleway", sans-serif;
+}
+
+header {
+  height: 10px;
+  width: 100vw;
+  background-color: var(--app-color-2);
+}
+
+
+main.container {
+  background-color: var(--app-color-3);
+  height: calc(100vh - 10px);
+  text-align: center;
+}
+
+
+
+section.first {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
+  padding: 16px;
+}
+
+div.text h1,
+div.text h2 {
+  width: 85vw;
+  max-width: 520px;
+  margin-bottom: 8px;
+}
+
+div.text h1 {
+  margin-bottom: 16px;
+}
+
+div.text h1 span {
+  color: var(--app-color-1);
+}
+
+
+
+article.video {
+  background-color: var(--app-color-1);
+  min-height: 250px;
+  width: 100%;
+  max-width: 600px;
+
+  height: auto;
+}
+
+article.btn {
+  width: 100%;
+  max-width: 600px;
+}
+
+
+
+article.btn a {
+  display: block;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 16px;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 4px;
+  background-color: var(--app-color-2);
+  color: var(--app-color-3);
+  font-size: 1.12em;
+}
