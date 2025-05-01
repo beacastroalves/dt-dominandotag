@@ -93,7 +93,6 @@ article.video {
   height: auto;
   margin: 0 auto;
   max-width: 800px;
-
 }
 
 article.btn {
@@ -145,11 +144,22 @@ footer {
   }
 }
 
-@media screen and (min-width: 900px) {
+/* MEDIA QUERY */
+
+@media screen and (min-width: 768px) {
 
 }
 
+@media screen and (orientation: landscape) {
 
-@media screen and (min-width: 1024px) {
 
+  section.first::before {
+    background-position: 0% 12%;
+  }
+
+  article.video {
+    width: 50%;
+    height: auto;
+  }
 }
+
