@@ -16,7 +16,7 @@ body {
 }
 
 main {
-  height: 100vh;
+  height: var(--app-full-height);
   overflow-y: scroll;
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
@@ -26,8 +26,8 @@ main {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    height: 100vh;
+    min-height: var(--app-full-height);
+    height: var(--app-full-height);
     gap: 16px;
     scroll-snap-align: start;
     position: relative;
@@ -112,29 +112,6 @@ main {
                 padding-bottom: 56.25%;
               }
             }
-
-            .btn {
-              width: 100%;
-              text-align: center;
-
-              a {
-                display: block;
-                text-decoration: none;
-                font-weight: bold;
-                width: 100%;
-                padding: 16px;
-                border-radius: 4px;
-                background-color: var(--app-color-1);
-                color: var(--app-color-3);
-                font-size: 1.12em;
-
-                &:hover {
-                  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
-                  transform: scale(1.05);
-                  transition: 0.3s ease-out;
-                }
-              }
-            }
           }
         }
       }
@@ -154,10 +131,95 @@ main {
     }
 
     &.second {
-      background-color: red;
+      background-color: var(--app-color-2);
+      /* background-color: black; */
+
+      .splide {
+        width: 100%;
+        height: 100%;
+        background-color: rgba( var(--app-color-2-rgb), 0.5);
+
+        .splide__arrows {
+          .splide__arrow {
+            background-color: var(--app-color-3);
+
+            svg {
+              fill: var(--app-color-1);
+            }
+          }
+        }
+
+        .splide__track {
+          height: 100%;
+
+          .splide__list {
+            .splide__slide {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              padding: 96px 64px;
+
+              img {
+                width: 100%;
+                height: 100%;
+                object-fit: scale-down;
+              }
+            }
+          }
+        }
+
+        .splide__pagination {
+          margin-bottom: 32px;
+
+          li {
+            button {
+              background-color: var(--app-color-1);
+
+              &.is-active {
+                background-color: var(--app-color-3);
+              }
+            }
+          }
+        }
+      }
+
+      &::before {
+        content: '';
+        background-image: url(../images/feedbacks-s.png);
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        z-index: 0;
+      }
     }
   }
 }
+
+.btn {
+  width: 100%;
+  text-align: center;
+
+  a {
+    display: block;
+    text-decoration: none;
+    font-weight: bold;
+    width: 100%;
+    padding: 16px;
+    border-radius: 4px;
+    background-color: var(--app-color-1);
+    color: var(--app-color-3);
+    font-size: 1.12em;
+
+    &:hover {
+      box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+      transform: scale(1.05);
+      transition: 0.3s ease-out;
+    }
+  }
+}
+
 
 @media (max-height: 500px) {
   main {
@@ -195,6 +257,21 @@ main {
       &.first {
         &::before {
           background-position: 0% 12%;
+        }
+      }
+
+      &.second {
+        &::before {
+          content: '';
+          background-image: url(../images/feedbacks-l.png);
+          background-position: bottom;
+          /* background-repeat: no-repeat;
+          background-size: cover;
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0;
+          z-index: 0; */
         }
       }
     }
