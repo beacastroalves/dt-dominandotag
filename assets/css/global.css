@@ -323,7 +323,7 @@ main {
         }
 
         .modal-header {
-          color: var(--app-color-3);
+          color: black;
 
           .modal-title {
             margin-bottom: 8px;
