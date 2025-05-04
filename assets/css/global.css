@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
-@import url(variable.css);
+@import url(./variable.css);
+@import url(./fonts.css);
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
-
 
 * {
   box-sizing: border-box;
@@ -81,21 +81,24 @@ main {
             gap: 16px;
             width: 100%;
             text-align: center;
-            text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+            text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.35);
 
             h1, h2 {
+              line-height: 2rem;
               margin: 0;
               span {
                 color: var(--app-color-1);
               }
+            }
 
-              &h1 {
-                font-size: 24px;
-              }
+            h1 {
+              font-size: 24px;
+            }
 
-              &h2 {
-                font-size: 20px;
-              }
+            h2 {
+              font-size: 22px;
+              font-family: "Behind";
+              font-weight: 700;
             }
           }
 
@@ -146,7 +149,7 @@ main {
         width: 100%;
         padding: 0 32px;
         max-width: 520px;
-        z-index: 10;
+        z-index: 3;
 
         .btn {
           a {
@@ -244,7 +247,152 @@ main {
       }
     }
   }
+
+  &.no-scroll {
+    overflow-y: hidden;
+    scroll-behavior: unset;
+    scroll-snap-type: none;
+  }
 }
+
+.modal-wrapper {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  background-color: #000000cc;
+
+  .modal-container {
+    overflow-y: scroll;
+    padding: 20px;
+    width: 100%;
+
+    .modal {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100%;
+
+      .modal-content {
+        position: relative;
+        background-color: #ffffff;
+        padding: 16px;
+        border-radius: 10px;
+        width: 100%;
+        max-width: 700px;
+
+        .modal-close {
+          position: absolute;
+          top: -15px;
+          right: -15px;
+
+          button {
+            width: 30px;
+            height: 30px;
+            padding: 0;
+            border: none;
+            outline: none;
+            border-radius: 100%;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .close-part {
+              width: 2px;
+              height: 15px;
+              position: absolute;
+              background-color: #888888;
+
+              &:first-child {
+                transform: rotate(-45deg);
+              }
+
+              &:last-child {
+                transform: rotate(45deg);
+              }
+            }
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+
+        .modal-header {
+          color: var(--app-color-3);
+
+          .modal-title {
+            margin-bottom: 8px;
+            font-size: 1.125rem;
+            font-weight: bold;
+          }
+
+          .modal-subtitle {
+            /* font-size: 1rem; */
+            margin-bottom: 16px;
+          }
+        }
+
+        .modal-body {
+          form {
+            .form-group {
+              margin-bottom: 8px;
+
+              input {
+                width: 100%;
+                padding: 8px;
+                outline: none;
+                border: 1px solid #888888;
+                border-radius: 4px;
+
+                &:focus {
+                  border-color: #333333;
+                }
+              }
+
+              button {
+                width: 100%;
+                outline: none;
+                border: none;
+                background-color: var(--app-color-3);
+                color: var(--app-color-1);
+                font-weight: bold;
+                font-size: 1rem;
+                text-transform: uppercase;
+                padding: 16px;
+                border-radius: 4px;
+              }
+
+              &.padding-top {
+                padding-top: 16px;
+              }
+            }
+          }
+        }
+
+        .modal-footer {
+          margin-top: 16px;
+          text-align: center;
+          color: #888888;
+        }
+      }
+    }
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+
+  &.open {
+    display: flex;
+  }
+}
+
 
 
 
