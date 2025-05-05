@@ -1,0 +1,99 @@
+.vimeo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #000000;
+
+  .vimeo-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .first-click {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+
+      .first-click-box {
+        background-color: #000000;
+        padding: 16px;
+        animation: vimeoScalePulse 1.2s ease-in-out infinite;
+        text-transform: uppercase;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+
+        h2 {
+          font-size: 18px;
+          margin: 0;
+        }
+
+        p {
+          font-size: 16px;
+          margin: 0;
+        }
+      }
+
+      &.visible {
+        opacity: 1;
+      }
+    }
+
+    .vimeo-play-pause-button {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+
+      .vimeo-play-pause {
+        background-color: transparent;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        .play, .pause {
+          opacity: 0;
+          position: absolute;
+          color: #000000;
+          transform: scale(2);
+          transition: opacity 0.5s ease, transform 0.5s ease;
+
+          &.visible {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes vimeoScalePulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+}

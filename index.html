@@ -31,16 +31,29 @@
             <h2><span>Assista a aula</span> e pare de apagar incêndios nas suas sessões com pacientes cronicamente preocupados!</h4>
           </div>
           <div class="side">
-            <article class="video">
-              <!-- <div class="vimeo-container">
-                <iframe src="https://player.vimeo.com/video/1079319109?background=1&h=5d7306926b&amp;title=false&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Tutoris Github"></iframe>
-              </div>
-              <script src="https://player.vimeo.com/api/player.js"></script> -->
+            <div class="vimeo">
               <div class="vimeo-container">
-                <iframe src="https://player.vimeo.com/video/983102307?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="metacognições"></iframe>
+                <iframe vimeo="983102307"></iframe>
+                <!-- 1079319109 -->
+                 <div class="first-click">
+                  <div class="first-click-box">
+                    <h2>Toque aqui</h2>
+                    <ion-icon name="play"></ion-icon>
+                    <p>Para assistir sua aula</p>
+                  </div>
+                 </div>
+                 <div class="vimeo-play-pause-button">
+                  <div class="vimeo-play-pause">
+                    <div class="play">
+                      <ion-icon name="play-circle"></ion-icon>
+                    </div>
+                    <div class="pause">
+                      <ion-icon name="pause-circle"></ion-icon>
+                    </div>
+                  </div>
+                 </div>
               </div>
-              <script src="https://player.vimeo.com/api/player.js"></script>
-            </article>
+            </div>
             <article class="btn">
               <a class="open-modal" href="#">Quero entrar para o DT!</a>
             </article>
@@ -139,7 +152,11 @@
     </div>
   </div>
 
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
   <script src="./assets/js/splide.min.js"></script>
   <script src="./assets/js/script.js"></script>
+  <script src="./assets/js/vimeo.js"></script>
 </body>
 </html>
