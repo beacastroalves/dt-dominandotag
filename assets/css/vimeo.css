@@ -85,6 +85,40 @@
         }
       }
     }
+
+    .vimeo-controls {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 8px;
+      display: none;
+
+      .left, .right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .vimeo-control {
+          display: none;
+          font-size: 24px;
+          touch-action: manipulation;
+          color: #ffffff;
+
+          &.visible {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+          }
+        }
+      }
+
+      &.visible {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
   }
 }
 

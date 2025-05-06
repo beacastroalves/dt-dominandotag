@@ -3,6 +3,12 @@ const vimeoFirstClickRef = document.querySelector('.vimeo .vimeo-container .firs
 const vimeoPlayPauseRef = document.querySelector('.vimeo .vimeo-container .vimeo-play-pause-button .vimeo-play-pause');
 const vimeoPlayPausePlayRef = document.querySelector('.vimeo .vimeo-container .vimeo-play-pause-button .vimeo-play-pause .play');
 const vimeoPlayPausePauseRef = document.querySelector('.vimeo .vimeo-container .vimeo-play-pause-button .vimeo-play-pause .pause');
+const vimeoControlsRef = document.querySelector('.vimeo .vimeo-container .vimeo-controls');
+const vimeoControlsPlayRef = document.querySelector('.vimeo .vimeo-container .vimeo-controls .play');
+const vimeoControlsPauseRef = document.querySelector('.vimeo .vimeo-container .vimeo-controls .pause');
+const vimeoControlsMuteRef = document.querySelector('.vimeo .vimeo-container .vimeo-controls .mute');
+const vimeoControlsUnmuteRef = document.querySelector('.vimeo .vimeo-container .vimeo-controls .unmute');
+const vimeoControlsFullscreenRef = document.querySelector('.vimeo .vimeo-container .vimeo-controls .fullscreen');
 
 vimeoIframeRef.setAttribute('frameborder', '0');
 vimeoIframeRef.setAttribute('allow', 'autoplay; fullscreen; encrypted-media');
@@ -14,13 +20,19 @@ const player = new Vimeo.Player(vimeoIframeRef);
 player.ready().then(() => {
   let isFirstClick = true;
 
-  vimeoPlayPauseRef.addEventListener('click', async () => {
+  const onClickPlayPause = async () => {
     if (isFirstClick) {
       isFirstClick = false;
       await player.setMuted(false);
       await player.setCurrentTime(0);
       await player.setVolume(1);
       vimeoFirstClickRef.classList.remove('visible');
+      vimeoControlsRef.classList.add('visible');
+
+      vimeoControlsPauseRef.classList.add('visible');
+      vimeoControlsMuteRef.classList.add('visible');
+      vimeoControlsFullscreenRef.classList.add('visible');
+
       vimeoPlayPausePauseRef.style.display = 'none';
       player.play();
     } else {
@@ -37,6 +49,9 @@ player.ready().then(() => {
         setTimeout(() => {
           vimeoPlayPausePlayRef.classList.remove('visible');
         }, 100);
+
+        vimeoControlsPlayRef.classList.remove('visible');
+        vimeoControlsPauseRef.classList.add('visible');
       } else {
         player.pause();
 
@@ -49,8 +64,34 @@ player.ready().then(() => {
         setTimeout(() => {
           vimeoPlayPausePauseRef.classList.remove('visible');
         }, 100);
+
+        vimeoControlsPauseRef.classList.remove('visible');
+        vimeoControlsPlayRef.classList.add('visible');
       }
     }
-  });
+  };
+
+  const onClickMuteUnmute = async () => {
+    const volume = await player.getVolume();
+
+    if (volume > 0) {
+      await player.setMuted(true);
+      await player.setVolume(0);
+      vimeoControlsMuteRef.classList.remove('visible');
+      vimeoControlsUnmuteRef.classList.add('visible');
+    } else {
+      await player.setMuted(false);
+      await player.setVolume(1);
+
+      vimeoControlsMuteRef.classList.add('visible');
+      vimeoControlsUnmuteRef.classList.remove('visible');
+    }
+  };
+
+  vimeoPlayPauseRef.addEventListener('click', onClickPlayPause);
+  vimeoControlsPlayRef.addEventListener('click', onClickPlayPause);
+  vimeoControlsPauseRef.addEventListener('click', onClickPlayPause);
+  vimeoControlsMuteRef.addEventListener('click', onClickMuteUnmute);
+  vimeoControlsUnmuteRef.addEventListener('click', onClickMuteUnmute);
 });
 
