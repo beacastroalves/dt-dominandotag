@@ -1,3 +1,4 @@
+const vimeoRef = document.querySelector('.vimeo');
 const vimeoIframeRef = document.querySelector('.vimeo .vimeo-container iframe');
 const vimeoFirstClickRef = document.querySelector('.vimeo .vimeo-container .first-click');
 const vimeoPlayPauseRef = document.querySelector('.vimeo .vimeo-container .vimeo-play-pause-button .vimeo-play-pause');
@@ -93,5 +94,31 @@ player.ready().then(() => {
   vimeoControlsPauseRef.addEventListener('click', onClickPlayPause);
   vimeoControlsMuteRef.addEventListener('click', onClickMuteUnmute);
   vimeoControlsUnmuteRef.addEventListener('click', onClickMuteUnmute);
+  vimeoControlsFullscreenRef.addEventListener('click', () => {
+    if (vimeoRef.classList.contains('fullscreen')) {
+      vimeoRef.classList.remove('fullscreen');
+      document.body.classList.remove('fullscreen');
+
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      }
+
+    } else {
+      vimeoRef.classList.add('fullscreen');
+      document.body.classList.add('fullscreen');
+
+      if (document.body.requestFullscreen) {
+        document.body.requestFullscreen();
+      } else if (document.body.webkitRequestFullscreen) {
+        document.body.webkitRequestFullscreen();
+      } else if (document.body.msRequestFullscreen) {
+        document.body.msRequestFullscreen();
+      }
+    }
+  });
 });
 
