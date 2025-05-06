@@ -25,7 +25,14 @@ player.ready().then(() => {
     if (isFirstClick) {
       isFirstClick = false;
       await player.setMuted(false);
-      await player.setCurrentTime(0);
+
+      const savedTime = parseFloat(localStorage.getItem('vimeo-current-time'));
+      if (!isNaN(savedTime)) {
+        await player.setCurrentTime(savedTime);
+      } else {
+        await player.setCurrentTime(0);
+      }
+
       await player.setVolume(1);
       vimeoFirstClickRef.classList.remove('visible');
       vimeoControlsRef.classList.add('visible');
@@ -120,5 +127,12 @@ player.ready().then(() => {
       }
     }
   });
+
+  player.on('timeupdate', data => {
+    if (!isFirstClick) {
+      localStorage.setItem('vimeo-current-time', data.seconds);
+    }
+  });
 });
 
+// const lastSecond = localStorage.setItem();
