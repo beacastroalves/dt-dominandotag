@@ -10,6 +10,8 @@ const vimeoControlsPauseRef = document.querySelector('.vimeo .vimeo-container .v
 const vimeoControlsMuteRef = document.querySelector('.vimeo .vimeo-container .vimeo-controls .mute');
 const vimeoControlsUnmuteRef = document.querySelector('.vimeo .vimeo-container .vimeo-controls .unmute');
 const vimeoControlsFullscreenRef = document.querySelector('.vimeo .vimeo-container .vimeo-controls .fullscreen');
+const vimeoProgressRef = document.querySelector('.vimeo .vimeo-container .vimeo-progress');
+const vimeoProgressValueRef = document.querySelector('.vimeo .vimeo-container .vimeo-progress .vimeo-progress-value');
 
 vimeoIframeRef.setAttribute('frameborder', '0');
 vimeoIframeRef.setAttribute('allow', 'autoplay; fullscreen; encrypted-media');
@@ -40,6 +42,7 @@ player.ready().then(() => {
       vimeoControlsPauseRef.classList.add('visible');
       vimeoControlsMuteRef.classList.add('visible');
       vimeoControlsFullscreenRef.classList.add('visible');
+      vimeoProgressRef.classList.add('visible');
 
       vimeoPlayPausePauseRef.style.display = 'none';
       player.play();
@@ -131,6 +134,7 @@ player.ready().then(() => {
   player.on('timeupdate', data => {
     if (!isFirstClick) {
       localStorage.setItem('vimeo-current-time', data.seconds);
+      vimeoProgressValueRef.style.width = `${data.percent * 100}%`;
     }
   });
 });
