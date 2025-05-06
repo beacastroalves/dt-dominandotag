@@ -74,13 +74,13 @@
         .play, .pause {
           opacity: 0;
           position: absolute;
-          color: #000000;
-          transform: scale(2);
+          color: #000000be;
+          transform: scale(4);
           transition: opacity 0.5s ease, transform 0.5s ease;
 
           &.visible {
             opacity: 1;
-            transform: scale(1);
+            transform: scale(2);
           }
         }
       }
