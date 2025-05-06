@@ -12,11 +12,14 @@ const vimeoControlsUnmuteRef = document.querySelector('.vimeo .vimeo-container .
 const vimeoControlsFullscreenRef = document.querySelector('.vimeo .vimeo-container .vimeo-controls .fullscreen');
 const vimeoProgressRef = document.querySelector('.vimeo .vimeo-container .vimeo-progress');
 const vimeoProgressValueRef = document.querySelector('.vimeo .vimeo-container .vimeo-progress .vimeo-progress-value');
+const vimeodepRefs = document.querySelectorAll('.vimeodep');
 
 vimeoIframeRef.setAttribute('frameborder', '0');
 vimeoIframeRef.setAttribute('allow', 'autoplay; fullscreen; encrypted-media');
 vimeoIframeRef.setAttribute('src', `https://player.vimeo.com/video/${vimeoIframeRef.getAttribute('vimeo')}?background=0&title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1`);
 vimeoFirstClickRef.classList.add('visible');
+
+const finished = localStorage.getItem('vimeo-video-finished');
 
 const player = new Vimeo.Player(vimeoIframeRef);
 
@@ -151,8 +154,23 @@ player.ready().then(() => {
       if (vimeoRef.classList.contains('fullscreen')) {
         onClickFullScreenToggle();
       }
+
+      if (!finished) {
+        vimeodepRefs.forEach(vimeodepRef => {
+          vimeodepRef.style.display = vimeodepRef.dataset.originalDisplay;
+        });
+
+        localStorage.setItem('vimeo-video-finished', true);
+      }
+
+      openModal();
     }
   });
 });
 
-// const lastSecond = localStorage.setItem();
+if (!finished) {
+  vimeodepRefs.forEach(vimeodepRef => {
+    vimeodepRef.dataset.originalDisplay = getComputedStyle(vimeodepRef).display;
+    vimeodepRef.style.display = 'none';
+  });
+}

@@ -243,6 +243,10 @@ main {
     scroll-behavior: unset;
     scroll-snap-type: none;
   }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .modal-wrapper {

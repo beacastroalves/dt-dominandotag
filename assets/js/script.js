@@ -36,16 +36,20 @@ setFullHeight();
 
 const modalWrapperRef = document.querySelector('.modal-wrapper');
 
+const openModal = () => {
+  mainRef.classList.add('no-scroll');
+  modalWrapperRef.classList.add('open');
+};
+
+const closeModal = () => {
+  mainRef.classList.remove('no-scroll');
+  modalWrapperRef.classList.remove('open');
+};
+
 document.querySelectorAll('.open-modal').forEach(button => {
-  button.addEventListener('click', () => {
-    mainRef.classList.add('no-scroll');
-    modalWrapperRef.classList.add('open');
-  });
+  button.addEventListener('click', openModal);
 });
 
 document.querySelectorAll('.close-modal').forEach(button => {
-  button.addEventListener('click', () => {
-    mainRef.classList.remove('no-scroll');
-    modalWrapperRef.classList.remove('open');
-  });
+  button.addEventListener('click', closeModal);
 });
