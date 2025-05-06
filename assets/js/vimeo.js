@@ -99,12 +99,7 @@ player.ready().then(() => {
     }
   };
 
-  vimeoPlayPauseRef.addEventListener('click', onClickPlayPause);
-  vimeoControlsPlayRef.addEventListener('click', onClickPlayPause);
-  vimeoControlsPauseRef.addEventListener('click', onClickPlayPause);
-  vimeoControlsMuteRef.addEventListener('click', onClickMuteUnmute);
-  vimeoControlsUnmuteRef.addEventListener('click', onClickMuteUnmute);
-  vimeoControlsFullscreenRef.addEventListener('click', () => {
+  const onClickFullScreenToggle = () => {
     if (vimeoRef.classList.contains('fullscreen')) {
       vimeoRef.classList.remove('fullscreen');
       document.body.classList.remove('fullscreen');
@@ -116,7 +111,6 @@ player.ready().then(() => {
       } else if (document.msExitFullscreen) {
         document.msExitFullscreen();
       }
-
     } else {
       vimeoRef.classList.add('fullscreen');
       document.body.classList.add('fullscreen');
@@ -129,12 +123,34 @@ player.ready().then(() => {
         document.body.msRequestFullscreen();
       }
     }
-  });
+  };
+
+  vimeoPlayPauseRef.addEventListener('click', onClickPlayPause);
+  vimeoControlsPlayRef.addEventListener('click', onClickPlayPause);
+  vimeoControlsPauseRef.addEventListener('click', onClickPlayPause);
+  vimeoControlsMuteRef.addEventListener('click', onClickMuteUnmute);
+  vimeoControlsUnmuteRef.addEventListener('click', onClickMuteUnmute);
+  vimeoControlsFullscreenRef.addEventListener('click', onClickFullScreenToggle);
 
   player.on('timeupdate', data => {
     if (!isFirstClick) {
       localStorage.setItem('vimeo-current-time', data.seconds);
       vimeoProgressValueRef.style.width = `${data.percent * 100}%`;
+    }
+  });
+
+  player.on('ended', () => {
+    player.setCurrentTime(0);
+
+    if (isFirstClick) {
+      player.play();
+    } else {
+      vimeoControlsPauseRef.classList.remove('visible');
+      vimeoControlsPlayRef.classList.add('visible');
+
+      if (vimeoRef.classList.contains('fullscreen')) {
+        onClickFullScreenToggle();
+      }
     }
   });
 });
