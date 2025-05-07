@@ -1,6 +1,7 @@
 const vimeoRef = document.querySelector('.vimeo');
 const vimeoIframeRef = document.querySelector('.vimeo .vimeo-container iframe');
 const vimeoFirstClickRef = document.querySelector('.vimeo .vimeo-container .first-click');
+const vimeoFirstClickBoxPRef = document.querySelector('.vimeo .vimeo-container .first-click .first-click-box p');
 const vimeoPlayPauseRef = document.querySelector('.vimeo .vimeo-container .vimeo-play-pause-button .vimeo-play-pause');
 const vimeoPlayPausePlayRef = document.querySelector('.vimeo .vimeo-container .vimeo-play-pause-button .vimeo-play-pause .play');
 const vimeoPlayPausePauseRef = document.querySelector('.vimeo .vimeo-container .vimeo-play-pause-button .vimeo-play-pause .pause');
@@ -22,28 +23,59 @@ vimeoIframeRef.setAttribute('src', `https://player.vimeo.com/video/${vimeoIframe
 vimeoFirstClickRef.classList.add('visible');
 
 const finished = localStorage.getItem('vimeo-video-finished');
+const savedTime = parseFloat(localStorage.getItem('vimeo-current-time'));
 
+const updateFirstClickBox = () => {
+  if (localStorage.getItem('vimeo-video-finished')) {
+    vimeoFirstClickBoxPRef.textContent = 'Para reassistir a aula';
+  } else {
+    vimeoFirstClickBoxPRef.textContent = 'Para assistir sua aula';
+  }
+
+  if (!isNaN(parseFloat(localStorage.getItem('vimeo-current-time')))) {
+    vimeoFirstClickBoxPRef.textContent = 'Para continuar sua aula';
+  }
+};
+
+updateFirstClickBox();
 const player = new Vimeo.Player(vimeoIframeRef);
 
-player.ready().then(() => {
+player.ready().then(async () => {
   let isFirstClick = true;
 
-  const onClickPlayPause = async () => {
+  if (!isNaN(savedTime)) {
+    player.pause();
+    player.setCurrentTime(savedTime);
+  } else {
+    player.setCurrentTime(0);
+  }
+
+  const toggleFirstClick = async () => {
+    isFirstClick = !isFirstClick;
+
     if (isFirstClick) {
-      isFirstClick = false;
+      await player.setMuted(true);
+      await player.setVolume(0);
+
+      vimeoFirstClickRef.classList.add('visible');
+      vimeoControlsRef.classList.remove('visible');
+
+      vimeoControlsPlayRef.classList.add('visible');
+      vimeoControlsPauseRef.classList.remove('visible');
+      vimeoControlsMuteRef.classList.remove('visible');
+      vimeoControlsSpeedCycleRef.classList.remove('visible');
+      vimeoControlsFullscreenRef.classList.remove('visible');
+
+      vimeoPlayPausePauseRef.style.display = 'block';
+      player.pause();
+      updateFirstClickBox();
+    } else {
       await player.setMuted(false);
-
-      const savedTime = parseFloat(localStorage.getItem('vimeo-current-time'));
-      if (!isNaN(savedTime)) {
-        await player.setCurrentTime(savedTime);
-      } else {
-        await player.setCurrentTime(0);
-      }
-
       await player.setVolume(1);
       vimeoFirstClickRef.classList.remove('visible');
       vimeoControlsRef.classList.add('visible');
 
+      vimeoControlsPlayRef.classList.remove('visible');
       vimeoControlsPauseRef.classList.add('visible');
       vimeoControlsMuteRef.classList.add('visible');
       vimeoControlsSpeedCycleRef.classList.add('visible');
@@ -52,6 +84,12 @@ player.ready().then(() => {
 
       vimeoPlayPausePauseRef.style.display = 'none';
       player.play();
+    }
+  };
+
+  const onClickPlayPause = async () => {
+    if (isFirstClick) {
+      toggleFirstClick();
     } else {
       const isVideoPaused = await player.getPaused();
       if (isVideoPaused) {
@@ -163,13 +201,11 @@ player.ready().then(() => {
 
   player.on('ended', () => {
     player.setCurrentTime(0);
+    localStorage.removeItem('vimeo-current-time');
 
     if (isFirstClick) {
       player.play();
     } else {
-      vimeoControlsPauseRef.classList.remove('visible');
-      vimeoControlsPlayRef.classList.add('visible');
-
       if (vimeoRef.classList.contains('fullscreen')) {
         onClickFullScreenToggle();
       }
@@ -182,7 +218,20 @@ player.ready().then(() => {
         localStorage.setItem('vimeo-video-finished', true);
       }
 
+      toggleFirstClick();
       // Cenário opcional: abrir automaticamente o formulário no final do vídeo usando => openModal();
+    }
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if(document.hidden && !isFirstClick) {
+      toggleFirstClick();
+    }
+  });
+
+  window.addEventListener('blur', () => {
+    if (!isFirstClick) {
+      toggleFirstClick();
     }
   });
 });
