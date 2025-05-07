@@ -24,6 +24,7 @@ vimeoFirstClickRef.classList.add('visible');
 const finished = localStorage.getItem('vimeo-video-finished');
 
 const player = new Vimeo.Player(vimeoIframeRef);
+
 player.ready().then(() => {
   let isFirstClick = true;
 
@@ -181,7 +182,7 @@ player.ready().then(() => {
         localStorage.setItem('vimeo-video-finished', true);
       }
 
-      openModal();
+      // Cenário opcional: abrir automaticamente o formulário no final do vídeo usando => openModal();
     }
   });
 });
