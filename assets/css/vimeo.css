@@ -31,7 +31,8 @@
       transition: opacity 0.5s ease;
 
       .first-click-box {
-        background-color: #000000;
+        background-color: #000000dd;
+        color: var(--app-color-1);
         padding: 16px;
         animation: vimeoScalePulse 1.2s ease-in-out infinite;
         text-transform: uppercase;
@@ -40,6 +41,8 @@
         justify-content: center;
         align-items: center;
         gap: 8px;
+        border-radius: 8px;
+        border: 2px solid var(--app-color-1);
 
         h2 {
           font-size: 18px;
@@ -61,6 +64,8 @@
       position: absolute;
       width: 100%;
       height: 100%;
+      background: transparent;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 76%, rgba(0, 0, 0, 0.4) 99%);
 
       .vimeo-play-pause {
         background-color: transparent;
@@ -103,12 +108,19 @@
           font-size: 24px;
           touch-action: manipulation;
           color: #ffffff;
+          text-shadow: 1px 1px 10px var(--app-color-3);
+          padding: 6px;
 
           &.visible {
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
+
+            &:hover {
+              color: #ededed;
+              animation: vimeoScalePulse 0.6s ease-in;
+            }
           }
         }
       }
@@ -118,6 +130,7 @@
         justify-content: space-between;
         align-items: center;
       }
+
     }
 
     .vimeo-progress {
@@ -161,6 +174,6 @@
   }
 
   50% {
-    transform: scale(1.2);
+    transform: scale(1.25);
   }
 }
