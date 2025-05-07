@@ -7,6 +7,8 @@ const vimeoPlayPausePauseRef = document.querySelector('.vimeo .vimeo-container .
 const vimeoControlsRef = document.querySelector('.vimeo .vimeo-container .vimeo-controls');
 const vimeoControlsPlayRef = document.querySelector('.vimeo .vimeo-container .vimeo-controls .play');
 const vimeoControlsPauseRef = document.querySelector('.vimeo .vimeo-container .vimeo-controls .pause');
+const vimeoControlsSpeedCycleRef = document.querySelector('.vimeo .vimeo-container .vimeo-controls .speed-cycle');
+const vimeoControlsSpeedCycleTextRef = document.querySelector('.vimeo .vimeo-container .vimeo-controls .speed-cycle .speed-cycle-text');
 const vimeoControlsMuteRef = document.querySelector('.vimeo .vimeo-container .vimeo-controls .mute');
 const vimeoControlsUnmuteRef = document.querySelector('.vimeo .vimeo-container .vimeo-controls .unmute');
 const vimeoControlsFullscreenRef = document.querySelector('.vimeo .vimeo-container .vimeo-controls .fullscreen');
@@ -22,7 +24,7 @@ vimeoFirstClickRef.classList.add('visible');
 const finished = localStorage.getItem('vimeo-video-finished');
 
 const player = new Vimeo.Player(vimeoIframeRef);
-
+localStorage.setItem('vimeo-video-finished', true);
 player.ready().then(() => {
   let isFirstClick = true;
 
@@ -44,6 +46,7 @@ player.ready().then(() => {
 
       vimeoControlsPauseRef.classList.add('visible');
       vimeoControlsMuteRef.classList.add('visible');
+      vimeoControlsSpeedCycleRef.classList.add('visible');
       vimeoControlsFullscreenRef.classList.add('visible');
       vimeoProgressRef.classList.add('visible');
 
@@ -102,6 +105,21 @@ player.ready().then(() => {
     }
   };
 
+  const onClickSpeedCycle = async () => {
+    const speed = await player.getPlaybackRate();
+
+    if (speed === 1) {
+      vimeoControlsSpeedCycleTextRef.textContent = '1,5';
+      await player.setPlaybackRate(1.5);
+    } else if (speed === 1.5) {
+      vimeoControlsSpeedCycleTextRef.textContent = '2';
+      await player.setPlaybackRate(2);
+    } else  {
+      vimeoControlsSpeedCycleTextRef.textContent = '1';
+      await player.setPlaybackRate(1);
+    }
+  };
+
   const onClickFullScreenToggle = () => {
     if (vimeoRef.classList.contains('fullscreen')) {
       vimeoRef.classList.remove('fullscreen');
@@ -133,6 +151,7 @@ player.ready().then(() => {
   vimeoControlsPauseRef.addEventListener('click', onClickPlayPause);
   vimeoControlsMuteRef.addEventListener('click', onClickMuteUnmute);
   vimeoControlsUnmuteRef.addEventListener('click', onClickMuteUnmute);
+  vimeoControlsSpeedCycleRef.addEventListener('click', onClickSpeedCycle);
   vimeoControlsFullscreenRef.addEventListener('click', onClickFullScreenToggle);
 
   player.on('timeupdate', data => {
