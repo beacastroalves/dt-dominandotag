@@ -130,11 +130,7 @@ document.querySelectorAll('.close-modal').forEach(button => {
   splide.mount();
 
   startVimeo(data.first.vimeo);
-
-  const modalButtonRef = document.querySelector('#modal-button');
-  modalButtonRef.addEventListener('click', () => {
-    window.location.href = data.modal.url;
-  });
+  startForm();
 
   mainRef.style.display = 'block';
   loadingRef.remove();
