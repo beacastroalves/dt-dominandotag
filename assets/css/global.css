@@ -383,6 +383,7 @@ main {
                 text-transform: uppercase;
                 padding: 16px;
                 border-radius: 4px;
+                cursor: pointer;
               }
 
               &.padding-top {

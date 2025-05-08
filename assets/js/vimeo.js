@@ -20,7 +20,7 @@ const startVimeo = vimeoData => {
 
   vimeoIframeRef.setAttribute('frameborder', '0');
   vimeoIframeRef.setAttribute('allow', 'autoplay; fullscreen; encrypted-media');
-  vimeoIframeRef.setAttribute('src', `https://player.vimeo.com/video/${vimeoIframeRef.getAttribute('vimeo')}?background=0&title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1`);
+  vimeoIframeRef.setAttribute('src', `https://player.vimeo.com/video/${vimeoIframeRef.getAttribute('vimeo')}?background=0&title=0&byline=0&portrait=0&controls=0&autoplay=1&muted=1${vimeoData.hash ? `&h=${vimeoData.hash}` : ''}`);
   vimeoFirstClickRef.classList.add('visible');
 
   const finished = localStorage.getItem('vimeo-video-finished');
@@ -71,6 +71,7 @@ const startVimeo = vimeoData => {
         player.pause();
         updateFirstClickBox();
       } else {
+        player.setCurrentTime(1013);
         await player.setMuted(false);
         await player.setVolume(1);
         vimeoFirstClickRef.classList.remove('visible');

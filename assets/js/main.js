@@ -54,7 +54,8 @@ document.querySelectorAll('.close-modal').forEach(button => {
     modal: {
      title: 'Essa é a hora de destravar seus casos de TAG!',
      subTitle: 'Preencha com atenção os dados. Escolha um e-mail de fácil acesso.',
-     button: 'Quero entrar para o DT!'
+     button: 'Quero entrar para o DT!',
+     url: 'https:\/\/dominandotag.com.br\/dtag\/'
     },
     first: {
      title: 'Aperte o play e entenda o porquê <span>seus casos de TAG</span> não avançam com o óbvio da TCC!',
@@ -62,6 +63,7 @@ document.querySelectorAll('.close-modal').forEach(button => {
      button: 'Quero entrar para o DT!',
      vimeo: {
       id: '983102307',
+      hash: '',
       title: 'Toque aqui',
       text: {
        initial: 'Para assistir sua aula',
@@ -128,6 +130,12 @@ document.querySelectorAll('.close-modal').forEach(button => {
   splide.mount();
 
   startVimeo(data.first.vimeo);
+
+  const modalButtonRef = document.querySelector('#modal-button');
+  modalButtonRef.addEventListener('click', () => {
+    window.location.href = data.modal.url;
+  });
+
   mainRef.style.display = 'block';
   loadingRef.remove();
 })();
