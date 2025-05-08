@@ -27,19 +27,18 @@
       <div class="container">
         <div class="content">
           <div class="text">
-            <h1>Aperte o play e entenda o porquê <span>seus casos de TAG</span> não avançam com o óbvio da TCC!</h3>
-            <h2><span>Assista a aula</span> e pare de apagar incêndios nas suas sessões com pacientes cronicamente preocupados!</h4>
+            <h1 id="first-title"></h1>
+            <h2 id="first-subTitle"></h4>
           </div>
           <div class="side">
             <div class="vimeo">
               <div class="vimeo-container">
-                <iframe vimeo="983102307"></iframe>
-                <!-- 1079319109 -->
+                <iframe id="first-vimeo-id"></iframe>
                  <div class="first-click">
                   <div class="first-click-box">
-                    <h2>Toque aqui</h2>
+                    <h2 id="first-vimeo-title"></h2>
                     <ion-icon name="play"></ion-icon>
-                    <p>Para assistir sua aula</p>
+                    <p id="first-vimeo-text"></p>
                   </div>
                  </div>
                  <div class="vimeo-play-pause-button">
@@ -82,7 +81,7 @@
               </div>
             </div>
             <article class="btn vimeodep">
-              <a class="open-modal" href="#">Quero entrar para o DT!</a>
+              <a id="first-button" class="open-modal" href="#"></a>
             </article>
           </div>
         </div>
@@ -92,36 +91,15 @@
     <section class="second vimeodep">
       <div class="btn-container">
         <article class="btn">
-          <a class="open-modal" href="#">Quero minha vaga no DT!</a>
+          <a id="second-button" class="open-modal" href="#"></a>
         </article>
       </div>
       <div class="splide">
         <div class="splide__track">
-          <ul class="splide__list">
-            <li class="splide__slide">
+          <ul id="second-images" class="splide__list">
+            <!-- <li class="splide__slide">
               <img src="assets/images/deps/Depoimento - Andressa Crisostomo.jpg" alt="">
-            </li>
-            <li class="splide__slide">
-              <img src="assets/images/deps/Depoimento - Bruna Viscardi.jpg" alt="">
-            </li>
-            <li class="splide__slide">
-              <img src="assets/images/deps/Depoimento - Daniella Magalhaes.jpg" alt="">
-            </li>
-            <li class="splide__slide">
-              <img src="assets/images/deps/Depoimento - Larissa Oliveira.jpg" alt="">
-            </li>
-            <li class="splide__slide">
-              <img src="assets/images/deps/Depoimento - Raissa Telles 1.jpg" alt="">
-            </li>
-            <li class="splide__slide">
-              <img src="assets/images/deps/Depoimento - Raissa Telles 2.jpg" alt="">
-            </li>
-            <li class="splide__slide">
-              <img src="assets/images/deps/Depoimento - Raissa Telles 3.jpg" alt="">
-            </li>
-            <li class="splide__slide">
-              <img src="assets/images/deps/Depoimento - Raissa Telles 4.jpg" alt="">
-            </li>
+            </li> -->
           </ul>
         </div>
       </div>
@@ -134,6 +112,8 @@
     </section>
   </main>
 
+  <div class="loading"></div>
+
   <div class="modal-wrapper">
     <div class="modal-container">
       <div class="modal">
@@ -145,12 +125,8 @@
             </button>
           </div>
           <div class="modal-header">
-            <div class="modal-title">
-              Essa é a hora de destravar seus casos de TAG!
-            </div>
-            <div class="modal-subtitle">
-              Preencha com atenção os dados. Escolha um e-mail de fácil acesso.
-            </div>
+            <div id="modal-title" class="modal-title"></div>
+            <div id="modal-subTitle" class="modal-subtitle"></div>
           </div>
           <div class="modal-body">
             <form action="post">
@@ -164,7 +140,7 @@
                 <input type="tel" name="whatsapp" placeholder="Whatsapp">
               </div>
               <div class="form-group padding-top">
-                <button type="submit">Quero entrar para o DT!</button>
+                <button id="modal-button" type="submit"></button>
               </div>
             </form>
           </div>
@@ -179,7 +155,7 @@
   <script src="https://player.vimeo.com/api/player.js"></script>
 
   <script src="./assets/js/splide.min.js"></script>
-  <script src="./assets/js/script.js"></script>
   <script src="./assets/js/vimeo.js"></script>
+  <script src="./assets/js/main.js"></script>
 </body>
 </html>
