@@ -132,7 +132,7 @@ document.querySelectorAll('.close-modal').forEach(button => {
   setTimeout(() => splide.mount());
 
   startVimeo(data.first.vimeo);
-  startForm();
+  startForm(data.modal);
 
   mainRef.style.display = 'block';
   loadingRef.remove();
