@@ -74,6 +74,7 @@ document.querySelectorAll('.close-modal').forEach(button => {
     },
     second: {
      button: 'Quero entrar para o DT!',
+     imagesPath: 'assets/images/deps',
      images: [
       'Depoimento - Andressa Crisostomo.jpg',
       'Depoimento - Bruna Viscardi.jpg',
@@ -120,7 +121,7 @@ document.querySelectorAll('.close-modal').forEach(button => {
   document.querySelector('#first-vimeo-id').setAttribute('vimeo', data.first.vimeo.id);
 
   document.querySelector('#second-images').innerHTML = data.second.images.map(image => {
-    return `<li class="splide__slide"><img src="assets/images/deps/${image}"></li>`;
+    return `<li class="splide__slide"><img src="${data.second.imagesPath}/${image}"></li>`;
   }).join('');
 
   const splide = new Splide('.splide', {
