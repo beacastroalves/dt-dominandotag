@@ -71,7 +71,6 @@ const startVimeo = vimeoData => {
         player.pause();
         updateFirstClickBox();
       } else {
-        player.setCurrentTime(1013);
         await player.setMuted(false);
         await player.setVolume(1);
         vimeoFirstClickRef.classList.remove('visible');
