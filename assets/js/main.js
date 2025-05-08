@@ -89,6 +89,7 @@ document.querySelectorAll('.close-modal').forEach(button => {
   };
 
   try {
+    await new Promise(res => setTimeout(res, 2000));
     const res = await fetch('/api/', {
       method: 'POST',
       body: JSON.stringify({
@@ -128,7 +129,7 @@ document.querySelectorAll('.close-modal').forEach(button => {
     type: 'loop',
     autoplay: true,
   });
-  splide.mount();
+  setTimeout(() => splide.mount());
 
   startVimeo(data.first.vimeo);
   startForm();
