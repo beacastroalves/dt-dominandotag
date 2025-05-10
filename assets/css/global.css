@@ -364,12 +364,21 @@ main {
                 width: 100%;
                 padding: 8px;
                 outline: none;
-                border: 1px solid #888888;
+                border: 2px solid #888888;
                 border-radius: 4px;
 
                 &:focus {
                   border-color: #333333;
                 }
+
+                &.touched.invalid {
+                  border-color: #b80000;
+                }
+              }
+
+              small {
+                display: none;
+                color: #b80000;
               }
 
               button {
@@ -384,6 +393,13 @@ main {
                 padding: 16px;
                 border-radius: 4px;
                 cursor: pointer;
+                transition: 0.5s;
+
+                &[disabled] {
+                  background-color: #888888;
+                  cursor: not-allowed;
+                  opacity: 0.4;
+                }
               }
 
               &.padding-top {

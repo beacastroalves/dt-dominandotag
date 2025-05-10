@@ -125,15 +125,21 @@
             <div id="modal-subTitle" class="modal-subtitle"></div>
           </div>
           <div class="modal-body">
-            <form>
+            <form id="form-vsl">
               <div class="form-group">
                 <input type="text" name="name" placeholder="Nome">
+                <small class="required">Campo obrigatório</small>
+                <small class="minLength">Mínimo 4 caracteres</small>
               </div>
               <div class="form-group">
                 <input type="email" name="email" placeholder="Email">
+                <small class="required">Campo obrigatório</small>
+                <small class="invalidEmail">Email inválido</small>
               </div>
               <div class="form-group">
                 <input type="tel" name="whatsapp" placeholder="Whatsapp">
+                <small class="required">Campo obrigatório</small>
+                <small class="invalidWhatsapp">Número de whatsapp inválido</small>
               </div>
               <div class="form-group padding-top">
                 <button id="modal-button" type="button"></button>
