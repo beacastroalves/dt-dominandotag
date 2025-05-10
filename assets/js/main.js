@@ -89,7 +89,6 @@ document.querySelectorAll('.close-modal').forEach(button => {
   };
 
   try {
-    await new Promise(res => setTimeout(res, 2000));
     const res = await fetch('/api/', {
       method: 'POST',
       body: JSON.stringify({
