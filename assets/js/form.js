@@ -95,15 +95,28 @@ const startForm = dataModal => {
       });
       const json = await res.json();
 
-      if (json.success) {
+      if (json && json.success) {
         window.location.href = dataModal.url;
+      } else {
+        switch (json.error) {
+          case 'DuplicateEmail':
+            alert('Este email já existe!');
+            break;
+          case 'DuplicateWhatsapp':
+            alert('Este númerio de whatsapp já existe!');
+            break;
+          case 'InvalidInput':
+            alert('Falha ao continuar, os dados foram enviados em um formato não esperado!');
+            break;
+          default:
+            throw new Error("InternalServerError");
+        }
+
+        buttonRef.removeAttribute('disabled');
       }
 
-      console.log(json);
-
-      buttonRef.removeAttribute('disabled');
-    } catch (error) {
-      alert(error);
+    } catch (_) {
+      alert('Falha ao se comunicar com o servidor, por favor, tente novamente mais tarde!');
       buttonRef.removeAttribute('disabled');
     } finally {
       buttonRef.classList.remove('loading');
