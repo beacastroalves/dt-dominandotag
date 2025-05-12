@@ -86,15 +86,22 @@ const startForm = dataModal => {
     buttonRef.setAttribute('disabled', true);
 
     try {
-      await fetch('/api/', {
+      const res = await fetch('/api/', {
         method: 'POST',
         body: JSON.stringify({
           action: 'signup',
           data: obj
         })
       });
+      const json = await res.json();
 
-      window.location.href = dataModal.url;
+      if (json.success) {
+        window.location.href = dataModal.url;
+      }
+
+      console.log(json);
+
+      buttonRef.removeAttribute('disabled');
     } catch (error) {
       alert(error);
       buttonRef.removeAttribute('disabled');
