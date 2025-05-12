@@ -19,11 +19,15 @@ const startForm = dataModal => {
         case 'email':
           if (!controlRef.value) {
             errorName = 'required';
+          } else if (!controlRef.value.match(/^[\w\-.]+@(?:[\w-]+\.)+[\w-]{2,}$/)) {
+            errorName = 'invalidEmail';
           }
           break;
         case 'whatsapp':
           if (!controlRef.value) {
             errorName = 'required';
+          } else if (!controlRef.value.match(/^\([1-9]{2}\) (?:9[0-9])[0-9]{3}\-[0-9]{4}$/)) {
+            errorName = 'invalidWhatsapp';
           }
           break;
       }
@@ -73,7 +77,7 @@ const startForm = dataModal => {
 
     const obj = {};
     controlRefs.forEach(controlRef => obj[controlRef.name] = controlRef.value);
-
+    console.log(obj);
     // window.location.href = dataModal.url;
   });
 
