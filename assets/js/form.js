@@ -103,10 +103,10 @@ const startForm = dataModal => {
             alert('Este email já existe!');
             break;
           case 'DuplicateWhatsapp':
-            alert('Este númerio de whatsapp já existe!');
+            alert('Este número de whatsapp já existe!');
             break;
           case 'InvalidInput':
-            alert('Falha ao continuar, os dados foram enviados em um formato não esperado!');
+            alert('Os dados foram enviados em um formato não esperado, tente corrigi-los!');
             break;
           default:
             throw new Error("InternalServerError");
