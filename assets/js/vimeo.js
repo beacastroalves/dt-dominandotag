@@ -25,7 +25,6 @@ const startVimeo = vimeoData => {
 
   const finished = localStorage.getItem('vimeo-video-finished');
   let savedTime = parseFloat(localStorage.getItem('vimeo-current-time'));
-  console.log("O primeiro saved time " + savedTime);
 
   const updateFirstClickBox = () => {
     if (localStorage.getItem('vimeo-video-finished')) {

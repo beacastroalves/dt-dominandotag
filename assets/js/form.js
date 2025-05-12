@@ -1,4 +1,3 @@
-console.log('Form started!');
 const startForm = dataModal => {
   const formRef = document.querySelector('#form-vsl');
   const controlRefs = formRef.querySelectorAll('input');
@@ -58,7 +57,6 @@ const startForm = dataModal => {
 
   controlRefs.forEach(controlRef => {
     controlRef.addEventListener('input', () => {
-      console.log(controlRef.value);
       validateAllControls();
     });
 
@@ -76,7 +74,6 @@ const startForm = dataModal => {
     const obj = {};
     controlRefs.forEach(controlRef => obj[controlRef.name] = controlRef.value);
 
-    console.log(obj);
     // window.location.href = dataModal.url;
   });
 
