@@ -1,6 +1,6 @@
 const mainRef = document.querySelector('main');
 const sections = document.querySelectorAll('main section');
-const loadingRef = document.querySelector('.loading');
+const pageLoadingRef = document.querySelector('.app-loading.page');
 
 let currentIndex = 0;
 
@@ -116,7 +116,7 @@ document.querySelectorAll('.close-modal').forEach(button => {
   setTextContent('#second-button', data.second.button);
   setTextContent('#modal-title', data.modal.title);
   setTextContent('#modal-subTitle', data.modal.subTitle);
-  setTextContent('#modal-button', data.modal.button);
+  setTextContent('#modal-button .text', data.modal.button);
 
   document.querySelector('#first-vimeo-id').setAttribute('vimeo', data.first.vimeo.id);
 
@@ -134,5 +134,5 @@ document.querySelectorAll('.close-modal').forEach(button => {
   startForm(data.modal);
 
   mainRef.style.display = 'block';
-  loadingRef.remove();
+  pageLoadingRef.remove();
 })();

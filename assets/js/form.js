@@ -74,15 +74,33 @@ const startForm = dataModal => {
     });
   });
 
-  buttonRef.addEventListener('click', () => {
+  buttonRef.addEventListener('click', async () => {
     if (buttonRef.getAttribute('disabled')) {
       return;
     }
 
     const obj = {};
     controlRefs.forEach(controlRef => obj[controlRef.name] = controlRef.value);
-    console.log(obj);
-    // window.location.href = dataModal.url;
+
+    buttonRef.classList.add('loading');
+    buttonRef.setAttribute('disabled', true);
+
+    try {
+      await fetch('/api/', {
+        method: 'POST',
+        body: JSON.stringify({
+          action: 'signup',
+          data: obj
+        })
+      });
+
+      window.location.href = dataModal.url;
+    } catch (error) {
+      alert(error);
+      buttonRef.removeAttribute('disabled');
+    } finally {
+      buttonRef.classList.remove('loading');
+    }
   });
 
   validateAllControls();
