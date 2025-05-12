@@ -24,7 +24,8 @@ const startVimeo = vimeoData => {
   vimeoFirstClickRef.classList.add('visible');
 
   const finished = localStorage.getItem('vimeo-video-finished');
-  const savedTime = parseFloat(localStorage.getItem('vimeo-current-time'));
+  let savedTime = parseFloat(localStorage.getItem('vimeo-current-time'));
+  console.log("O primeiro saved time " + savedTime);
 
   const updateFirstClickBox = () => {
     if (localStorage.getItem('vimeo-video-finished')) {
@@ -90,6 +91,10 @@ const startVimeo = vimeoData => {
 
     const onClickPlayPause = async () => {
       if (isFirstClick) {
+        savedTime = parseFloat(localStorage.getItem('vimeo-current-time'));
+        if (isNaN(savedTime)) {
+          player.setCurrentTime(0);
+        }
         toggleFirstClick();
       } else {
         const isVideoPaused = await player.getPaused();

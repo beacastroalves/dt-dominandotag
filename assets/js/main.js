@@ -62,7 +62,7 @@ document.querySelectorAll('.close-modal').forEach(button => {
      subTitle: '<span>Assista a aula</span> e pare de apagar incêndios nas suas sessões com pacientes cronicamente preocupados!',
      button: 'Quero entrar para o DT!',
      vimeo: {
-      id: '983102307',
+      id: '1083536151',
       hash: '',
       title: 'Toque aqui',
       text: {
