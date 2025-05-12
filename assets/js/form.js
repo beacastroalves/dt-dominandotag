@@ -61,6 +61,10 @@ const startForm = dataModal => {
 
   controlRefs.forEach(controlRef => {
     controlRef.addEventListener('input', () => {
+      if (controlRef.getAttribute('mask')) {
+        applyMaskOnInput(controlRef);
+      }
+
       validateAllControls();
     });
 
