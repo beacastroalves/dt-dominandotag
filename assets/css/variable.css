@@ -13,6 +13,10 @@
   --app-color-3-rgb: 241, 233, 223;
   --app-color-3-contrast: #000000;
 
+  --app-color-btn: #008000;
+  --app-color-btn-rgb: 0, 128, 0;
+  --app-color-btn-shade: #006800;
+  --app-color-btn-contrast: #ffffff;
 
   --app-color-sucess: #2b990a;
   --app-color-sucess-contrast: #000000;

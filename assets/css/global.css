@@ -31,12 +31,13 @@ body {
     width: 100%;
     padding: 16px;
     border-radius: 4px;
-    background-color: var(--app-color-1);
-    color: var(--app-color-3);
+    background-color: var(--app-color-btn);
+    color: var(--app-color-btn-contrast);
     font-size: 1.12em;
 
     &:hover {
-      box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+      box-shadow: 1px 1px 14px rgba(0, 0, 0, 0.25);
+      background-color: var(--app-color-btn-shade);
       transform: scale(1.05);
       transition: 0.3s ease-out;
       cursor: pointer;
@@ -141,18 +142,6 @@ main {
         padding: 0 32px;
         max-width: 520px;
         z-index: 3;
-
-        .btn {
-          a {
-            background-color: var(--app-color-3);
-            color: var(--app-color-1);
-
-            &:hover {
-              background-color: var(--app-color-1);
-              color: var(--app-color-3);
-            }
-          }
-        }
       }
 
       .splide {
@@ -397,8 +386,8 @@ main {
                 width: 100%;
                 outline: none;
                 border: none;
-                background-color: var(--app-color-3);
-                color: var(--app-color-1);
+                background-color: var(--app-color-btn);
+                color: var(--app-color-btn-contrast);
                 font-weight: bold;
                 font-size: 1rem;
                 text-transform: uppercase;
@@ -421,6 +410,11 @@ main {
                   .text {
                     display: none;
                   }
+                }
+
+                &:hover {
+                  background-color: var(--app-color-btn-shade);
+                  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.35);
                 }
 
                 &[disabled] {
