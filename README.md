@@ -8,6 +8,9 @@ A Landing Page "Dominando TAG" é um projeto de **alta performance focado em cap
 
 Este projeto demonstrou minha capacidade de integrar diversas tecnologias e boas práticas de Front-end para criar uma solução de marketing digital eficaz.
 
+![Screenshot (146)](https://github.com/user-attachments/assets/52ea8ca9-5160-4f58-b1ab-3866dda4479e)
+
+
 ## ✨ Funcionalidades e Destaques Técnicos
 
 * **Video Sales Letter (VSL) Interativa:**
@@ -30,6 +33,8 @@ Este projeto demonstrou minha capacidade de integrar diversas tecnologias e boas
 * **Estrutura de Código Limpa e Dinâmica:**
     * Carregamento de dados da página via `Workspace` de uma API, permitindo atualização de conteúdo sem redeployment.
     * Gerenciamento de estados de carregamento e modais para aprimorar a UX.
+
+  ![image](https://github.com/user-attachments/assets/20bd7611-63b7-42f1-bedc-96b5ea218275)
 
 ## 🛠️ Tecnologias Principais
 
